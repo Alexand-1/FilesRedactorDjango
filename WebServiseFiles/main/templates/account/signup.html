@@ -6,17 +6,72 @@
 {% endblock head_title %}
 
 {% block content %}
-    <h1>{% trans "Sign Up" %}</h1>
-    <p>
-        {% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}
-    </p>
-    {% url 'account_signup' as action_url %}
-    <form method="post" action="{{ action_url }}" tags="entrance,signup">
-        {% csrf_token %}
-        {{ form.as_p }}  {# Render the form fields #}
-        {% if redirect_field_value %}
-            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-        {% endif %}
-        <button type="submit" tags="prominent,signup">{% trans "Sign Up" %}</button>
-    </form>
+    <style>
+    body {
+        background-color: #222; /* Цвет темного фона */
+    }
+
+    .login-container {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        text-align: center; /* Центрируем содержимое по горизонтали */
+    }
+
+    .login-container h1 {
+        margin-bottom: 20px;
+    }
+
+    .login-container .form-group {
+        margin-bottom: 15px;
+    }
+
+    .login-container .form-group input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    .login-container button {
+        width: 100%;
+        padding: 10px;
+        background-color: #007BFF;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .login-container button:hover {
+        background-color: #0056b3;
+    }
+
+    .register-link {
+        margin-top: 15px;
+    }
+
+    .register-link a {
+        text-decoration: none;
+    }
+    </style>
+
+    <div class="login-container">
+        <h1>{% trans "Sign Up" %}</h1>
+        <p>
+            {% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}
+        </p>
+        {% url 'account_signup' as action_url %}
+        <form method="post" action="{{ action_url }}" tags="entrance,signup">
+            {% csrf_token %}
+            {{ form.as_p }}  {# Render the form fields #}
+            {% if redirect_field_value %}
+                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+            {% endif %}
+            <button type="submit" tags="prominent,signup">{% trans "Sign Up" %}</button>
+        </form>
+    </div>
 {% endblock content %}

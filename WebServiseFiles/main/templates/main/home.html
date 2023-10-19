@@ -74,6 +74,9 @@
         <div class="button-container">
             {% if user.is_authenticated %}
                 Добро пожаловать, {{ user.username }}
+            <a href="{% url 'account_logout' %}">
+                    <button>Выйти</button>
+                </a>
             {% else %}
             {% endif %}
         </div>
@@ -81,7 +84,7 @@
 
     <div class="description">
         <h4>
-           Вы успешно Зарегестрировались, теперь вы можете загружать файлы в формате csv!
+           Вы успешно вошли, теперь вы можете загружать файлы в формате csv!
         </h4>
     </div>
     <div class="file-upload">
